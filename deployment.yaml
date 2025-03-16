@@ -28,7 +28,6 @@ kind: CronJob
 metadata:
   name: nasa-image-fetcher-cron
 spec:
-  schedule: "0 0 * * *" # Runs daily at midnight
   jobTemplate:
     spec:
       template:
