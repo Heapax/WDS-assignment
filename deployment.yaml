@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nasa-image-fetcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nasa-image-fetcher
+  template:
+    metadata:
+      labels:
+        app: nasa-image-fetcher
+    spec:
+      containers:
+      - name: nasa-image-fetcher
+        image: my-docker-repo/nasa-image-fetcher:latest
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: csv-storage
+          mountPath: /app
+      volumes:
+      - name: csv-storage
+        emptyDir: {}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nasa-image-fetcher-cron
+spec:
+  schedule: "0 0 * * *" # Runs daily at midnight
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: nasa-image-fetcher
+            image: my-docker-repo/nasa-image-fetcher:latest
+            volumeMounts:
+            - name: csv-storage
+              mountPath: /app
+          restartPolicy: OnFailure
+          volumes:
+          - name: csv-storage
+            emptyDir: {}
