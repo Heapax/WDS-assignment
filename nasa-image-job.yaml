@@ -12,7 +12,7 @@ spec:
           claimName: nasa-data-pvc
       containers:
       - name: nasa-script
-        image: your-dockerhub-user/nasa-image-query:latest
+        image: seanmaz/nasa-image-query:latest
         volumeMounts:
         - mountPath: /data
           name: nasa-data
