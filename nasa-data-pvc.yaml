@@ -3,6 +3,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: nasa-data-pvc
   namespace: nasa-query-ns
+  labels:
+    app: nasa-query
 spec:
   accessModes:
     - ReadWriteOnce

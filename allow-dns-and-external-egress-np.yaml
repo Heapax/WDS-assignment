@@ -3,6 +3,8 @@ kind: NetworkPolicy
 metadata:
   name: allow-dns-and-external-egress
   namespace: nasa-query-ns
+  labels:
+    app: nasa-query
 spec:
   podSelector: {}
   policyTypes:
