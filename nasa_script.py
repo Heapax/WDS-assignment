@@ -1,6 +1,5 @@
 import requests
 import csv
-import os
 
 def get_nasa_assets(query="Ilan Ramon"):
     url = "https://images-api.nasa.gov/search"
