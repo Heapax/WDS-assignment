@@ -10,11 +10,9 @@ spec:
   policyTypes:
     - Egress
   egress:
-    # Allow egress traffic to DNS servers
     - to:
         - ipBlock:
             cidr: 10.96.0.0/12  # Kubernetes default DNS range
-    # Allow egress traffic to all external IPs
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0  # Allow all external egress traffic
