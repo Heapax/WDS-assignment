@@ -26,7 +26,7 @@ def filter_large_images(items, min_size_kb=1000):
             print(f"Error fetching image metadata for {nasa_id}: {e}")
     return large_images
 
-def save_to_csv(data, filename="nasa_images.csv"):
+def save_to_csv(data, filename="/data/nasa_images.csv"):
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["Nasa_id", "kb"])
