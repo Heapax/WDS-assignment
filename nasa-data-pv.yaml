@@ -2,6 +2,9 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nasa-data-pv
+  labels:
+    app: nasa-query
+    type: local
 spec:
   capacity:
     storage: 1Gi

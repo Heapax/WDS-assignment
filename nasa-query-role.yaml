@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: nasa-query-role
+  labels:
+    app: nasa-query
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log", "persistentvolumes", "persistentvolumeclaims"]
+    verbs: ["get", "list", "create"]
+  - apiGroups: [""]
+    resources: ["configmaps", "secrets"]
+    verbs: ["get", "list"]

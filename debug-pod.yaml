@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: debug-pod-with-pv
+  namespace: nasa-query-ns
+  labels:
+    app: nasa-query
 spec:
   containers:
     - name: debug-container

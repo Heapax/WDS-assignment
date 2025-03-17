@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-nasa-egress
+  namespace: nasa-query-ns
+  labels:
+    app: nasa-query
+spec:
+  podSelector:
+    matchLabels:
+      app: nasa-query
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 104.22.0.0/15
+      ports:
+        - protocol: TCP
+          port: 443

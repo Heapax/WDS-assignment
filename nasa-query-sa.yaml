@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nasa-query-sa
+  namespace: nasa-query-ns
+  labels:
+    app: nasa-query

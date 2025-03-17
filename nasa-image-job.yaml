@@ -1,19 +1,23 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: nasa-image-job
+  name: nasa-query-job
+  namespace: nasa-query-ns
+  labels:
+    app: nasa-query
 spec:
   template:
     spec:
+      serviceAccountName: nasa-query-sa
       restartPolicy: Never
+      containers:
+      - name: nasa-query
+        image: seanmaz/nasa-image-query:latest
+        volumeMounts:
+        - mountPath: mnt/data
+          name: nasa-data
+        command: ["python", "/app/nasa_query.py"]
       volumes:
       - name: nasa-data
         persistentVolumeClaim:
           claimName: nasa-data-pvc
-      containers:
-      - name: nasa-script
-        image: seanmaz/nasa-image-query:latest
-        volumeMounts:
-        - mountPath: /data
-          name: nasa-data
-        command: ["python", "/app/nasa_script.py"]
